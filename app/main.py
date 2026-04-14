@@ -1,11 +1,14 @@
+from typing import Any
+
+
 class Dictionary:
-    def __init__(self):
+    def __init__(self) -> None:
         self.dict_len = 0
         self.capacity = 8
         self.hash_table = [()] * self.capacity
         self.capacity_limit = self.capacity * 2 // 3
 
-    def __setitem__(self, key, value):
+    def __setitem__(self, key: Any, value: Any) -> None :
         if self.dict_len >= self.capacity_limit:
             self.capacity *= 2
             self.capacity_limit = self.capacity * 2 // 3
@@ -23,17 +26,18 @@ class Dictionary:
                 break
             addiction_index += 1
 
-    def __getitem__(self, key) -> None:
+    def __getitem__(self, key: Any) -> None:
         addiction_index = 0
         while addiction_index < len(self.hash_table):
+            index = hash(key) % self.capacity + addiction_index
             try:
-                if self.hash_table[hash(key) % self.capacity + addiction_index][1] == key:
-                    return self.hash_table[hash(key) % self.capacity + addiction_index][2]
+                if self.hash_table[index][1] == key:
+                    return self.hash_table[index][2]
             except IndexError:
                 raise KeyError
             addiction_index += 1
 
-    def __len__(self):
+    def __len__(self) -> int:
         return self.dict_len
 
     def increase_hash_table(self) -> list:
@@ -45,7 +49,10 @@ class Dictionary:
             addiction_index = 0
             while addiction_index < len(increased_table):
                 index = value[0] % self.capacity + addiction_index
-                if increased_table[index] == () or increased_table[index][1] == value[1]:
+                if (
+                    increased_table[index] == ()
+                    or increased_table[index][1] == value[1]
+                ):
                     increased_table[index] = value
                     break
                 addiction_index += 1
