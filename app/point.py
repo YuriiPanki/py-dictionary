@@ -1,4 +1,5 @@
 from typing import Any
+import datetime
 
 
 class Point:
@@ -17,7 +18,8 @@ class Point:
         # which is NOT a best practice, but you will be able to predict
         # a hash value by coordinates of the point and its index
         # in the hashtable as well
-        return hash((self.x, self.y))
+        return int(self._x) + int(self._y)
+        # return hash((self.x, self.y))
 
     @property
     def x(self) -> float:
@@ -26,3 +28,6 @@ class Point:
     @property
     def y(self) -> float:
         return self._y
+
+print(datetime.datetime.strptime("2020-01-10", "%Y-%m-%d"))
+print(datetime.date(2020, 1, 13))
