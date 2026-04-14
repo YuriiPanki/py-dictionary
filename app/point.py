@@ -28,6 +28,3 @@ class Point:
     @property
     def y(self) -> float:
         return self._y
-
-print(datetime.datetime.strptime("2020-01-10", "%Y-%m-%d"))
-print(datetime.date(2020, 1, 13))
